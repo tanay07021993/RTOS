@@ -62,7 +62,15 @@ printf("address of g_third=%p ",&g_third);
 	          }
 	        else
 	         {
-	
+                   FILE *fp = fopen("file_kill.sh","w+");
+                   fprintf(fp,"%s\n","#/bin/bash");
+                   fprintf(fp,"kill -9 %d\n",pid_p1);
+                   fprintf(fp,"kill -9 %d\n",pid_p2);
+		   fprintf(fp,"kill -9 %d\n",pid_p3);
+	            fprintf(fp,"kill -9 %d\n",getpid());
+                    fputs("rm kill.sh",fp);
+                    system("chmod +x kill.sh");
+                    fclose(fp);
 	         while(1)
 	         {
 	         }
