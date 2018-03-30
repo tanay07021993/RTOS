@@ -22,7 +22,7 @@ scanf("%d\n",&buf.message_txt[0]);
 printf("enter two numbers \n");                                     //numbers for operation
 scanf("%d\n%d\n",&buf.message_txt[1],&buf.message_txt[2]);  
  
-if((key=ftok("/home/venkatesh/RTOS/RTOSIIITB/pipe.c",'1'))==-1)                
+if((key=ftok("/home/tanay/pipe.c",'1'))==-1)                
 {
     perror("ftok");
     exit(1);
