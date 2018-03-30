@@ -46,7 +46,7 @@ int main()
 	int msqid;
 	MESSAGE  buf;
 	key_t key;
-	if((key=ftok("/home/tanay/serv.c",'1'))==-1)
+	if((key=ftok("/home/tanay/pipe.c",'1'))==-1)
 	{
 		perror("ftok");                       // creating key for message queue using file                                                          name
 		                                      
