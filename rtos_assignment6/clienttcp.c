@@ -19,7 +19,7 @@ int i;
 unsigned short port;
 pid_t id_p;
 struct sockaddr_in server;
-char send[200],recv[200];
+char send_1[200],recv_1[200];
    /* argv[1] is internet address of server argv[2] is port of server.
     * Convert the port from ascii to integer and then from host byte
     * order to network byte order.
@@ -30,7 +30,7 @@ char send[200],recv[200];
       exit(1);
    }
    port = htons(atoi(argv[2]));
-   if ((fd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+   if ((soc = socket(AF_INET, SOCK_STREAM, 0)) < 0)
    {
        perror("socket");
        exit(2);
@@ -55,8 +55,8 @@ exit(4);
  while(1) 
  {   
  printf("enter string\n");
- scanf("%s",send);
-if(send(soc,sendbuf,sizeof(sendbuf),0)<0)
+ scanf("%s",send_1);
+if(send(soc,send_1,sizeof(send_1),0)<0)
 {
 perror("send");
 exit(5);
@@ -67,11 +67,11 @@ exit(5);
  {
      while(1)
  {    
- if(recv(soc,recvbuf,sizeof(recv),0)<0)
+ if(recv(soc,recv_1,sizeof(recv_1),0)<0)
 {
      exit(6);
 }  
-printf("%s",recv);
+printf("%s",recv_1);
  }
  }
 }
