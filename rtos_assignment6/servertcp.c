@@ -10,7 +10,7 @@
 #include<error.h>
 int main()
 {
-int soc, server_size, client_size;
+int soc, server_size, client_size,newsoc;
 struct sockaddr_in client, server;
 char  send[200],recv[200];
 
@@ -41,8 +41,8 @@ pid_t id_p;
        exit(2);
    }
    /* Find out what port was really assigned and print it */
-   server_address_size = sizeof(server);
-   if (getsockname(fd, (struct sockaddr *) &server, &server_address_size) < 0)
+   server_size = sizeof(server);
+   if (getsockname(soc, (struct sockaddr *) &server, &server_size) < 0)
    {  
        exit(3);
    }
@@ -59,9 +59,9 @@ pid_t id_p;
    perror("listen");
    exit(4);
    }
-   client_address_size = sizeof(client);
+   client_size = sizeof(client);
    if((newsoc=accept(soc, (struct sockaddr *) &client,
-            &client_address_size)) <0)
+            &client_size)) <0)
    {
        perror("recvfrom");
       exit(4);
@@ -82,7 +82,7 @@ pid_t id_p;
        ntohs(client.sin_port),
 
        inet_ntoa(client.sin_addr));
-    printf("message is %s\n",recvbuf);
+    printf("message is %s\n",recv);
        if((id_p=fork())==-1)
        {
         perror("fork");
@@ -107,7 +107,7 @@ else
 while(1)
 {
 if(recvfrom(newsoc, recv, sizeof(recv), 0, (struct sockaddr *) &client,
-            &client_address_size) <0)
+            &client_size) <0)
    {
        
       exit(4);
@@ -117,6 +117,10 @@ printf("%s\n",recv);
 }
 return 0;
 }
+
+
+
+
 
 
 
